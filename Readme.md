@@ -21,19 +21,35 @@ In [App Search](https://dealcha.com/developer/app/search), click the lock. This 
 ### Example scope
 
 ```
-http://www.dealcha.dev/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
+https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
 ```
 
 ### Exchange code with a token
 
-After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL paramter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
+After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
-```
-POST http://www.dealcha.dev/rest/access
+
+POST https://dealcha.com/rest/access
 
 client_id [app_token]
 client_secret [app_secret]
 code [code]
+
+```
+Response
+
+{
+    "error": false,
+    "results": {
+        "access_token": "a9ac2ffacb05c0537072349b203f33c0",
+        "access_secret": "1bc60604ee50042bfcf28c3e572b344b",
+        "profile_id": "1",
+        "profile_name": null,
+        "profile_email": "admin@dealcha.com",
+        "profile_image": "{\"large\": \"http://dealcha.com/images/avatar/avatar-2.png\", \"small\": \"http://dealcha.com/images/avatar/avatar-2.png\"}"
+    }
+}
+
 ```
 
 
