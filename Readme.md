@@ -1,63 +1,46 @@
-Flatdoc
+Dealcha API
 =======
 
-Flatdoc is a small JavaScript file that fetches Markdown files and renders them
-as full pages. Essentially, it's the easiest
-way to make open source documentation from *Readme* files.
-
- * No server-side components
- * No build process needed
- * Deployable via GitHub Pages
- * Can fetch GitHub Readme files
- * Gorgeous default theme (and it's responsive)
- * Just create an HTML file and deploy!
+Dealcha is Thailand’s #1 Cashback Website
 
 *Current version: [v0.9.0][dist]*
 
-[![Build Status](https://travis-ci.org/rstacruz/flatdoc.svg?branch=gh-pages)](https://travis-ci.org/rstacruz/flatdoc)
+[![Build Status](https://travis-ci.org/rstacruz/flatdoc.svg?branch=gh-pages)](https://dealcha.com)
 
-Getting started
+How to create an App
 ---------------
 
-Create a file based on the template, which has a bare DOM, link to the
-scripts, and a link to a theme. It will look something like this (not exact).
-For GitHub projects, simply place this file in your [GitHub pages] branch and
-you're all good to go.
+1. [Log In](https://dealcha.com/login)
+2. Go to [App Search](https://dealcha.com/developer/app/search)
+3. [Create](https://dealcha.com/developer/app/create) an app
 
-*In short: just download this file and upload it somewhere.*
+### How OAuth 2 Works
 
-The main JS and CSS files are also available in [npm] and [bower].
+In [App Search](https://dealcha.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
 
-[Default theme template >][template]
+### Example scope
 
-[Blank template >][blank]
-
-[bower]: http://bower.io/search/?q=flatdoc
-[npm]: https://www.npmjs.org/package/flatdoc
-
-### Via GitHub
-
-To fetch a Github Repository's readme file, use the `Flatdoc.github` fetcher.
-This will fetch the Readme file of the repository's default branch.
-
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO')
-});
+```
+http://www.dealcha.dev/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
 ```
 
-You may also fetch another file other than the Readme file, just specify it as
-the 2nd parameter.
+### Exchange code with a token
 
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO', 'Changelog.md')
-});
+After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL paramter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
+
+```
+POST http://www.dealcha.dev/rest/access
+
+client_id [app_token]
+client_secret [app_secret]
+code [code]
 ```
 
-After you've done this, you probably want to deploy it via [GitHub Pages].
 
-[GitHub Pages guide >][GitHub Pages]
+
+
+
+
 
 ### Via a file
 
