@@ -29,53 +29,169 @@ https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redir
 After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
 
-POST https://dealcha.com/rest/access
-
-client_id [app_token]
-client_secret [app_secret]
-code [code]
 
 ```
-Response
+POST https://dealcha.com/rest/access
+
+ - client_id [app_token]
+ - client_secret [app_secret]
+ - code [code]
+
+
+This should return a session token similar to the following.
 
 {
     "error": false,
     "results": {
-        "access_token": "a9ac2ffacb05c0537072349b203f33c0",
-        "access_secret": "1bc60604ee50042bfcf28c3e572b344b",
-        "profile_id": "1",
+        "access_token": "123",
+        "access_secret": "456",
+        "profile_id": "49392",
         "profile_name": null,
-        "profile_email": "admin@dealcha.com",
-        "profile_image": "{\"large\": \"http://dealcha.com/images/avatar/avatar-2.png\", \"small\": \"http://dealcha.com/images/avatar/avatar-2.png\"}"
+        "profile_email": "johndoe@gmail.com",
     }
 }
 
 ```
 
+Account Authentication
+------------
 
+Getting Account Information. 
 
+### Sign Up
 
+Signin up a user via API.
 
+```
+POST https://dealcha.com/rest/signup
 
+ - profile_email
+ - auth_password 
+ - confirm 
+ - promo_code [optional]
+ - terms
 
-### Via a file
+The response should be similar to the following and this will response the data for your session.
 
-You may also fetch a file. In this example, this fetches the file `Readme.md` in
-the same folder as the HTML file.
+{
+    "error": false,
+    "results": {
+        "auth_id": "56864",
+        "auth_slug": "johndoe@gmail.com",
+        "auth_token": "90298c3d08e1a8135aa58305de35db5c",
+        "auth_facebook_token": null,
+        "auth_permissions": "public_product,public_profile,personal_profile,personal_product,personal_comment,personal_review",
+        "auth_type": null,
+        "auth_active": "0",
+        "auth_created": "2017-09-15 15:38:26",
+        "auth_updated": "2017-09-15 15:38:26",
+        "profile_id": "56923",
+        "profile_active": "1",
+        "profile_created": "2017-09-15 15:38:27",
+        "profile_updated": "2017-09-15 15:38:27",
+        "profile_first": null,
+        "profile_last": null,
+        "profile_username": null,
+        "profile_email": "johndoe@gmail.com",
+        "profile_image": "{\"large\": \"http://dealcha.dev/images/avatar/avatar-10.png\", \"small\": \"http://dealcha.dev/images/avatar/avatar-10.png\"}",
+        "profile_phone": null,
+        "profile_gender": null,
+        "profile_birthdate": null,
+        "profile_address": null,
+        "profile_channel_transfer": null,
+        "profile_bank_name": null,
+        "profile_bank_account_name": null,
+        "profile_bank_account_number": null,
+        "profile_paypal_account_name": null,
+        "profile_paypal_account_number": null,
+        "profile_code": null,
+        "profile_type": null,
+        "profile_flag": null,
+        "cashback": {
+            "total": 0,
+            "pending": 0,
+            "approved": 0,
+            "redeemable": 0,
+            "paid": null,
+            "bonus": {
+                "redeemable": "0",
+                "paid": 0
+            },
+            "redeemable_approved": 0
+        }
+    },
+    "message": "Sign Up Successful. Please check your email for verification process."
+}
 
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('Readme.md')
-});
 ```
 
-You may actually supply any URL here. It will be fetched via AJAX. This is
-useful for local testing.
+### Log In
 
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('http://yoursite.com/Readme.md')
-});
+Log in via API.
+
+```
+POST https://dealcha.com/rest/login
+
+ - profile_email
+ - auth_password 
+ - confirm 
+ - promo_code [optional]
+ - terms
+
+The response should be similar to the following and this will response the data for your session.
+
+{
+    "error": false,
+    "results": {
+        "error": false,
+        "results": {
+            "auth_id": "56864",
+            "auth_slug": "johndoe@gmail.com",
+            "auth_token": "90298c3d08e1a8135aa58305de35db5c",
+            "auth_facebook_token": null,
+            "auth_permissions": "public_product,public_profile,personal_profile,personal_product,personal_comment,personal_review",
+            "auth_type": null,
+            "auth_active": "0",
+            "auth_created": "2017-09-15 15:38:26",
+            "auth_updated": "2017-09-15 15:38:26",
+            "profile_id": "56923",
+            "profile_active": "1",
+            "profile_created": "2017-09-15 15:38:27",
+            "profile_updated": "2017-09-15 15:38:27",
+            "profile_first": null,
+            "profile_last": null,
+            "profile_username": null,
+            "profile_email": "johndoe@gmail.com",
+            "profile_image": "{\"large\": \"http://dealcha.dev/images/avatar/avatar-10.png\", \"small\": \"http://dealcha.dev/images/avatar/avatar-10.png\"}",
+            "profile_phone": null,
+            "profile_gender": null,
+            "profile_birthdate": null,
+            "profile_address": null,
+            "profile_channel_transfer": null,
+            "profile_bank_name": null,
+            "profile_bank_account_name": null,
+            "profile_bank_account_number": null,
+            "profile_paypal_account_name": null,
+            "profile_paypal_account_number": null,
+            "profile_code": null,
+            "profile_type": null,
+            "profile_flag": null,
+            "cashback": {
+                "total": 0,
+                "pending": 0,
+                "approved": 0,
+                "redeemable": 0,
+                "paid": null,
+                "bonus": {
+                    "redeemable": "0",
+                    "paid": 0
+                },
+                "redeemable_approved": 0
+            }
+        }
+    }
+}
+
 ```
 
 How it works
