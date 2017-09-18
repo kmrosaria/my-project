@@ -30,6 +30,8 @@ After the user approves of your app, they will be redirected back to the specifi
 
 POST https://dealcha.com/rest/access
 
+Parameters
+
  - `client_id [app_token]`
  - `client_secret [app_secret]`
  - `code [code]`
@@ -43,7 +45,7 @@ This should return a session token similar to the following.
     "results": {
         "access_token": "123",
         "access_secret": "456",
-        "profile_id": "49392",
+        "profile_id": "57093",
         "profile_name": null,
         "profile_email": "johndoe@gmail.com",
     }
@@ -62,6 +64,8 @@ Signin up a user via API.
 
 POST https://dealcha.com/rest/signup
 
+Parameters
+
  - `client_id`
  - `client_secret`
  - `profile_email`
@@ -76,7 +80,7 @@ The response should be similar to the following and this will response the data 
 {
     "error": false,
     "results": {
-        "auth_id": "56864",
+        "auth_id": "57034",
         "auth_slug": "johndoe@gmail.com",
         "auth_token": "90298c3d08e1a8135aa58305de35db5c",
         "auth_facebook_token": null,
@@ -85,7 +89,7 @@ The response should be similar to the following and this will response the data 
         "auth_active": "0",
         "auth_created": "2017-09-15 15:38:26",
         "auth_updated": "2017-09-15 15:38:26",
-        "profile_id": "56923",
+        "profile_id": "57093",
         "profile_active": "1",
         "profile_created": "2017-09-15 15:38:27",
         "profile_updated": "2017-09-15 15:38:27",
@@ -131,6 +135,8 @@ Log in via API.
 
 POST https://dealcha.com/rest/login
 
+Parameters
+
  - `auth_slug`
  - `auth_password`
  - `client_id`
@@ -144,7 +150,7 @@ The response should be similar to the following and this will response the data 
     "results": {
         "error": false,
         "results": {
-            "auth_id": "56864",
+            "auth_id": "57034",
             "auth_slug": "johndoe@gmail.com",
             "auth_token": "90298c3d08e1a8135aa58305de35db5c",
             "auth_facebook_token": null,
@@ -153,7 +159,7 @@ The response should be similar to the following and this will response the data 
             "auth_active": "0",
             "auth_created": "2017-09-15 15:38:26",
             "auth_updated": "2017-09-15 15:38:26",
-            "profile_id": "56923",
+            "profile_id": "57093",
             "profile_active": "1",
             "profile_created": "2017-09-15 15:38:27",
             "profile_updated": "2017-09-15 15:38:27",
@@ -199,6 +205,8 @@ Forgot Password via API.
 
 POST https://dealcha.com/rest/forgot
 
+Parameters
+
  - `auth_slug`
  - `client_id`
  - `client_secret`
@@ -209,7 +217,7 @@ The response should be similar to the following and the Dealcha will send the fo
 {
     "error": false,
     "results": {
-        "auth_id": "56864",
+        "auth_id": "57034",
         "auth_slug": "johndoe@gmail.com",
         "auth_token": "90298c3d08e1a8135aa58305de35db5c",
         "auth_facebook_token": null,
@@ -218,7 +226,7 @@ The response should be similar to the following and the Dealcha will send the fo
         "auth_active": "0",
         "auth_created": "2017-09-15 15:38:26",
         "auth_updated": "2017-09-15 15:38:26",
-        "profile_id": "56923",
+        "profile_id": "57093",
         "profile_active": "1",
         "profile_created": "2017-09-15 15:38:27",
         "profile_updated": "2017-09-15 15:38:27",
@@ -263,7 +271,7 @@ Change the `:profile_id` with the profile_id of the user and the response should
 {
     "error": false,
     "results": {
-        "profile_id": "56923",
+        "profile_id": "57093",
         "profile_active": "1",
         "profile_created": "2017-09-15 15:38:27",
         "profile_updated": "2017-09-15 15:38:27",
@@ -300,6 +308,7 @@ Search for profiles
 GET https://dealcha.com/rest/profile/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
+
  - `order`
  - `filter`
  - `start`
@@ -313,7 +322,7 @@ The response should be like the following.
     "results": {
         "rows": [
             {
-                "profile_id": "56923",
+                "profile_id": "57093",
                 "profile_active": "1",
                 "profile_created": "2017-09-15 15:38:27",
                 "profile_updated": "2017-09-15 15:38:27",
@@ -354,6 +363,74 @@ POST https://dealcha.com/rest/profile/update/:profile_id?client_id=[app_token]&c
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
 
+Parameters
+
+ - `client_id`
+ - `client_secret`
+ - `profile_first`
+ - `profile_last`
+ - `profile_username`
+ - `profile_email`
+ - `profile_image`
+ - `profile_phone`
+ - `profile_gender`
+ - `profile_birthday`
+ - `profile_address`
+    - `postal`
+    - `country`
+    - `street1`
+    - `street2`
+    - `district`
+    - `province`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
+        "client_secret": "5ae9782cdddd1994c6d91da7ad22d593",
+        "profile_last": "John",
+        "profile_first": "Doe",
+        "profile_id": "57093",
+        "profile_image": "{\"large\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\"}",
+        "profile_updated": "2017-09-18 13:52:06",
+        "original": {
+            "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
+            "client_secret": "5ae9782cdddd1994c6d91da7ad22d593",
+            "profile_last": "John",
+            "profile_first": "Doe",
+            "profile_id": "57093",
+            "profile_image": "{\"large\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\"}",
+            "profile_updated": "2017-09-18 13:52:06"
+        }
+    }
+}
+
+```
+
+API Calls for Settings (Front Page)
+------------
+
+### Cashback Summary
+
+Get cashback summaries and list of cashback according to status
+
+GET https://dealcha.com/rest/settings/cashback-summary**/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+
+Change the `:profile_id` with the profile_id of the user. 
+
+Parameters
+
+ - `client_id`
+ - `client_secret`
+ - `order`
+ - `filter`
+ - `start`
+ - `range`
+ - `status` (Default Value: `pending`) 
+
 ```
 The response should be like the following.
 
@@ -362,44 +439,124 @@ The response should be like the following.
     "results": {
         "rows": [
             {
-                "profile_id": "1",
-                "profile_active": "1",
-                "profile_created": "2015-09-11 00:06:24",
-                "profile_updated": "2017-07-03 10:53:07",
-                "profile_first": "admin",
-                "profile_last": "admin",
-                "profile_username": "Dealcha Admin",
-                "profile_email": "admin@dealcha.com",
-                "profile_image": {
-                    "large": "http://dealcha.com/images/avatar/avatar-2.png",
-                    "small": "http://dealcha.com/images/avatar/avatar-2.png"
-                },
-                "profile_phone": "0853139829",
-                "profile_gender": null,
-                "profile_birthdate": null,
-                "profile_address": {
-                    "postal": "",
-                    "country": "",
-                    "street1": "test",
-                    "street2": "test",
-                    "district": "",
-                    "province": ""
-                },
-                "profile_channel_transfer": "bank",
-                "profile_bank_name": "Kbank",
-                "profile_bank_account_name": "Tanun Chalermsinsuwan",
-                "profile_bank_account_number": "630215183923332",
-                "profile_paypal_account_name": null,
-                "profile_paypal_account_number": null,
-                "profile_code": null,
-                "profile_type": null,
-                "profile_flag": "1"
+                "quote_id": "343238",
+                "quote_active": "1",
+                "quote_created": "2017-09-18 14:09:41",
+                "quote_updated": "2017-09-18 14:09:41",
+                "quote_reference": "2907902578",
+                "quote_total": "1000.00",
+                "quote_percentage": "1.00",
+                "quote_cashback": "10.00",
+                "quote_redeemable": null,
+                "quote_pending": null,
+                "quote_approved": null,
+                "quote_rejected": null,
+                "quote_paid": null,
+                "quote_status": "pending",
+                "quote_type": "store",
+                "quote_flag": null,
+                "store_name": "Lazada",
+                "store_id": "1",
+                "profile_id": "57093",
+                "profile_first": null,
+                "profile_last": null,
+                "profile_email": "johndoe@gmail.com"
+            }
+        ],
+        "total": "1",
+        "totals": {
+            "pending": "10.00",
+            "total": 10,
+            "approved": 0,
+            "redeemable": 0,
+            "paid": null,
+            "bonus": {
+                "redeemable": "0",
+                "paid": 0
             },
-        "total": "1"
+            "redeemable_approved": 0
+        },
+        "status": "pending"
     }
 }
 
 ```
+
+### Referrals
+
+Get User's referral data and list of referrals
+
+GET https://dealcha.com/rest/settings/refer/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+
+Change the `:profile_id` with the profile_id of the user. 
+
+Parameters
+
+ - `client_id`
+ - `client_secret`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "item": [],
+        "profile_last": null,
+        "profile_first": null,
+        "encrypt_profile_id": "2133062",
+        "total": "0",
+        "total_complete": 0,
+        "total_pending": 0
+    }
+}
+
+```
+
+### Missing Cashback
+
+Report a missing cashback (`Discrepancy`)
+
+POST https://dealcha.com/rest/settings/missing-cashback/:profile_id
+
+Change the `:profile_id` with the profile_id of the user. 
+
+Parameters
+
+ - `client_id`
+ - `client_secret`
+ - `discrepancy_reference` (Shopping Trip)
+ - `discrepancy_note` (Total Purchase Price)
+ - `discrepancy_price` (Expected Cashback Amount)
+ - `discrepancy_order_email` (Order Confirmation Email)
+ - `discrepancy_images` (Order Confirmation Screenshot) (Optional)
+
+```
+The response should be like the following.
+
+{
+    "error": true,
+    "results": {
+        "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
+        "client_secret": "5ae9782cdddd1994c6d91da7ad22d593",
+        "discrepancy_note": "1000",
+        "discrepancy_reference": "2907902578",
+        "discrepancy_price": "10",
+        "discrepancy_order_email": "Sample Content",
+        "profile_id": "57093",
+        "fields": [
+            "discrepancy_note",
+            "discrepancy_reference",
+            "discrepancy_price",
+            "discrepancy_order_email",
+            "discrepancy_images"
+        ]
+    },
+    "message": "Missing Cashback succesfully reported."
+}
+
+```
+
 
 
 
