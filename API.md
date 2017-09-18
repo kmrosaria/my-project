@@ -558,8 +558,306 @@ The response should be like the following.
 ```
 
 
+### Missing Cashback
+
+Report a missing cashback (`Discrepancy`)
+
+POST https://dealcha.com/rest/settings/missing-cashback/:profile_id
+
+Change the `:profile_id` with the profile_id of the user. 
+
+Parameters
+
+ - `client_id`
+ - `client_secret`
+ - `discrepancy_reference` (Shopping Trip)
+ - `discrepancy_note` (Total Purchase Price)
+ - `discrepancy_price` (Expected Cashback Amount)
+ - `discrepancy_order_email` (Order Confirmation Email)
+ - `discrepancy_images` (Order Confirmation Screenshot) (Optional)
+
+```
+The response should be like the following.
+
+{
+    "error": true,
+    "results": {
+        "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
+        "client_secret": "5ae9782cdddd1994c6d91da7ad22d593",
+        "discrepancy_note": "1000",
+        "discrepancy_reference": "2907902578",
+        "discrepancy_price": "10",
+        "discrepancy_order_email": "Sample Content",
+        "profile_id": "57093",
+        "fields": [
+            "discrepancy_note",
+            "discrepancy_reference",
+            "discrepancy_price",
+            "discrepancy_order_email",
+            "discrepancy_images"
+        ]
+    },
+    "message": "Missing Cashback succesfully reported."
+}
+
+```
+
+Stores
+------------
+
+### Store Search
+
+Search for Stores or list of stores
+
+GET https://dealcha.com/rest/store/search?client_id=[app_token]&client_secret=[app_secret]
+
+Parameters
+
+ - `order` (latest/popular/cashback/store)
+ - `filter`
+ - `start`
+ - `range`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "rows": [
+            {
+                "promotion_id": "20000",
+                "promotion_detail": "Lazada",
+                "promotion_cashback_type": "fixed_percent",
+                "promotion_cashback_basis": "total_purchased",
+                "promotion_cashback_amount": "1",
+                "promotion_priority": "20",
+                "cashback_type": "fixed_percent",
+                "store_id": "1",
+                "store_name": "Lazada",
+                "store_logo": {
+                    "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+                },
+                "store_slug": "Lazada-s1",
+                "store_link": "http://dealcha.dev/Lazada-s1/store",
+                "store_root_url": "www.lazada.com.ph",
+                "store_redirect": "http://dealcha.dev/redirect/store/1",
+                "store_redirect_api": "http://dealcha.dev/rest/redirect/store/1?access_token=",
+                "store_description": "Lazada Description",
+                "store_default_cashback": "0.00",
+                "store_max_purchase": "100000.00",
+                "store_max_cashback": "300.00",
+                "store_cashback": "1"
+            },
+        "total": "1"
+    }
+}
+
+```
+
+### Store Detail
+
+Get Store Detail
+
+GET https://dealcha.com/rest/store/detail/:store_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "promotion_id": "20000",
+        "promotion_detail": "Lazada",
+        "promotion_cashback_type": "fixed_percent",
+        "promotion_cashback_basis": "total_purchased",
+        "promotion_cashback_amount": "1",
+        "store_id": "1",
+        "store_name": "Lazada",
+        "store_logo": {
+            "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+        },
+        "store_slug": "Lazada-s1",
+        "store_link": "http://dealcha.dev/Lazada-s1/store",
+        "store_root_url": "www.lazada.com.ph",
+        "store_redirect": "http://dealcha.dev/redirect/store/1",
+        "store_description": "Lazada Description",
+        "store_default_cashback": "0.00",
+        "store_max_purchase": "100000.00",
+        "store_max_cashback": "300.00"
+    }
+}
+
+```
+
+### Store Redirect
+
+Get redirect link and shopping trips for store
+
+GET https://dealcha.com/rest/redirect/store/:store_id/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "transaction_id": 1573110451,
+        "url": "http://ho.lazada.co.th/SHDE4j?url=http%3A%2F%2Fwww.lazada.co.th%2Fhot-top-deals?offer_id={offer_id}&affiliate_id={affiliate_id}&offer_name={offer_name}_{offer_file_id}&affiliate_name={affiliate_name}&transaction_id=1573110451&aff_sub2=1573110451"
+    }
+}
+
+```
+
+Deals
+------------
 
 
+### Promotion Search
+
+Search for Stores or list of stores
+
+GET https://dealcha.com/rest/deal/search?client_id=[app_token]&client_secret=[app_secret]
+
+Parameters
+
+ - `order` (latest/popular/cashback/store)
+ - `filter`
+ - `start`
+ - `range`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "rows": [
+            {
+                "promotion_id": "1",
+                "promotion_title": "Lazada Deal Number 1",
+                "promotion_slug": "Lazada-Deal-Number-1-P1",
+                "promotion_link": "https://dealcha.com/Lazada-Deal-Number-1-P1/deal",
+                "promotion_redirect": "https://dealcha.com//redirect/promotion/1",
+                "promotion_images": [
+                    {
+                        "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b13.png",
+                        "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b12.png",
+                        "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b11.png"
+                    }
+                ],
+                "promotion_detail": "<p>Deal Sample Descrition<br></p>",
+                "promotion_orig_price": "750.00",
+                "promotion_final_price": "690.00",
+                "promotion_start": "2017-09-14 16:47:00",
+                "promotion_end": "2017-09-30 16:47:00",
+                "promotion_cashback_type": "upto_percent",
+                "promotion_cashback_basis": "total_purchased",
+                "promotion_cashback_amount": "6",
+                "promotion_active": "1",
+                "promotion_created": "2017-09-14 16:47:54",
+                "promotion_updated": "2017-09-15 09:49:36",
+                "cashback_type": "upto_percent",
+                "store_id": "1",
+                "store_name": "Lazada",
+                "store_logo": {
+                    "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+                },
+                "store_slug": "Lazada-s1",
+                "store_link": "http://dealcha.dev/Lazada-s1/store",
+                "store_redirect": "http://dealcha.dev/redirect/store/1",
+                "store_description": "Lazada Description",
+                "store_default_cashback": "0.00",
+                "store_max_purchase": "100000.00",
+                "store_max_cashback": "300.00",
+                "store_cashback": "1"
+            },
+        "total": "1"
+    }
+}
+
+```
+
+### Deal Detail
+
+Get Deal Detail
+
+GET https://dealcha.com/rest/Deal/detail/:promotion_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "promotion_id": "1",
+        "promotion_title": "Lazada Deal Number 1",
+        "promotion_slug": "Lazada-Deal-Number-1-P1",
+        "promotion_link": "https://dealcha.com/Lazada-Deal-Number-1-P1/deal",
+        "promotion_redirect": "https://dealcha.com//redirect/promotion/1",
+        "promotion_images": [
+            {
+                "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b13.png",
+                "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b12.png",
+                "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b11.png"
+            }
+        ],
+        "promotion_detail": "<p>Deal Sample Descrition<br></p>",
+        "promotion_orig_price": "750.00",
+        "promotion_final_price": "690.00",
+        "promotion_start": "2017-09-14 16:47:00",
+        "promotion_end": "2017-09-30 16:47:00",
+        "promotion_cashback_type": "upto_percent",
+        "promotion_cashback_basis": "total_purchased",
+        "promotion_cashback_amount": "6",
+        "promotion_active": "1",
+        "promotion_created": "2017-09-14 16:47:54",
+        "promotion_updated": "2017-09-15 09:49:36",
+        "cashback_type": "upto_percent",
+        "store_id": "1",
+        "store_name": "Lazada",
+        "store_logo": {
+            "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+        },
+        "store_slug": "Lazada-s1",
+        "store_link": "http://dealcha.dev/Lazada-s1/store",
+        "store_redirect": "http://dealcha.dev/redirect/store/1",
+        "store_description": "Lazada Description",
+        "store_default_cashback": "0.00",
+        "store_max_purchase": "100000.00",
+        "store_max_cashback": "300.00",
+        "store_cashback": "1"
+    }
+}
+
+```
+
+### Deal Redirect
+
+Get redirect link and shopping trips for store
+
+GET https://dealcha.com/rest/redirect/promotion/:promotion/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "transaction_id": 1573110451,
+        "url": "http://ho.lazada.co.th/SHDE4j?url=http%3A%2F%2Fwww.lazada.co.th%2Fhot-top-deals?offer_id={offer_id}&affiliate_id={affiliate_id}&offer_name={offer_name}_{offer_file_id}&affiliate_name={affiliate_name}&transaction_id=1573110451&aff_sub2=1573110451"
+    }
+}
+
+```
 
 How it works
 ------------
