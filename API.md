@@ -18,8 +18,9 @@ How to create an App
 
 In [App Search](https://dealcha.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
 
-``` html
-EXAMPLE SCOPE
+### Example scope
+
+```
 https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
 ```
 
@@ -28,13 +29,15 @@ https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redir
 After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
 
+
+```
 POST https://dealcha.com/rest/access
 
  - `client_id [app_token]`
  - `client_secret [app_secret]`
  - `code [code]`
 
-``` html
+
 This should return a session token similar to the following.
 
 {
@@ -59,6 +62,7 @@ Getting Account Information.
 
 Signin up a user via API.
 
+```
 POST https://dealcha.com/rest/signup
 
  - `client_id`
@@ -69,7 +73,6 @@ POST https://dealcha.com/rest/signup
  - `promo_code [optional]`
  - `terms`
 
-``` html
 The response should be similar to the following and this will response the data for your session. The user will also recieve a confirmation email.
 
 {
@@ -128,6 +131,7 @@ The response should be similar to the following and this will response the data 
 
 Log in via API.
 
+```
 POST https://dealcha.com/rest/login
 
  - `auth_slug`
@@ -135,7 +139,6 @@ POST https://dealcha.com/rest/login
  - `client_id`
  - `client_secret`
 
-``` html
 The response should be similar to the following and this will response the data for your session.
 
 {
@@ -196,13 +199,13 @@ The response should be similar to the following and this will response the data 
 
 Forgot Password via API.
 
+```
 POST https://dealcha.com/rest/forgot
 
  - `auth_slug`
  - `client_id`
  - `client_secret`
 
-``` html
 The response should be similar to the following and the Dealcha will send the forgot password email to the user.
 
 {
@@ -254,9 +257,9 @@ Getting Infomation about the user.
 
 Search for profile detail per user
 
+```
 GET https://dealcha.com/rest/profile/detail/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
-``` html
 Change the `:profile_id` with the profile_id of the user and the response should be profile detail for the `user`.
 
 {
@@ -296,6 +299,7 @@ Change the `:profile_id` with the profile_id of the user and the response should
 
 Search for profiles
 
+```
 GET https://dealcha.com/rest/profile/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
@@ -304,7 +308,6 @@ Parameters
  - `start`
  - `range`
 
-``` html
 The response should be like the following.
 
 {
@@ -349,11 +352,12 @@ The response should be like the following.
 
 Update profile information per user
 
+```
 POST https://dealcha.com/rest/profile/update/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
+The reponse should be like the following.
 
-``` html
 The response should be like the following.
 
 {
