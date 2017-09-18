@@ -410,7 +410,7 @@ The response should be like the following.
 
 ```
 
-API Calls for Settings (Front Page)
+Settings
 ------------
 
 ### Cashback Summary
@@ -512,51 +512,6 @@ The response should be like the following.
 }
 
 ```
-
-### Missing Cashback
-
-Report a missing cashback (`Discrepancy`)
-
-POST https://dealcha.com/rest/settings/missing-cashback/:profile_id
-
-Change the `:profile_id` with the profile_id of the user. 
-
-Parameters
-
- - `client_id`
- - `client_secret`
- - `discrepancy_reference` (Shopping Trip)
- - `discrepancy_note` (Total Purchase Price)
- - `discrepancy_price` (Expected Cashback Amount)
- - `discrepancy_order_email` (Order Confirmation Email)
- - `discrepancy_images` (Order Confirmation Screenshot) (Optional)
-
-```
-The response should be like the following.
-
-{
-    "error": true,
-    "results": {
-        "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
-        "client_secret": "5ae9782cdddd1994c6d91da7ad22d593",
-        "discrepancy_note": "1000",
-        "discrepancy_reference": "2907902578",
-        "discrepancy_price": "10",
-        "discrepancy_order_email": "Sample Content",
-        "profile_id": "57093",
-        "fields": [
-            "discrepancy_note",
-            "discrepancy_reference",
-            "discrepancy_price",
-            "discrepancy_order_email",
-            "discrepancy_images"
-        ]
-    },
-    "message": "Missing Cashback succesfully reported."
-}
-
-```
-
 
 ### Missing Cashback
 
@@ -857,6 +812,145 @@ The response should be like the following.
     }
 }
 
+```
+
+Category
+------------
+
+### Category Search
+
+Get list of categories
+
+GET https://dealcha.com/rest/category/search?client_id=[app_token]&client_secret=[app_secret]
+
+Parameters
+
+ - `order`
+ - `filter`
+ - `start`
+ - `range`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "rows": [
+            {
+                "category_id": "1",
+                "category_name": "Home Appliances",
+                "category_type": null,
+                "category_flag": null,
+                "category_feature": "0",
+                "category_active": "1",
+                "category_created": "2017-05-23 20:59:00",
+                "category_updated": "2017-05-24 15:09:43"
+            },
+        ],
+        "total": "1"
+    }
+}
+
+```
+### Deal Detail
+
+Search per category
+
+GET https://dealcha.com/rest/category/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "category_id": "1",
+        "category_name": "Home Appliances",
+        "category_type": null,
+        "category_flag": null,
+        "category_feature": "0",
+        "category_active": "1",
+        "category_created": "2017-05-23 20:59:00",
+        "category_updated": "2017-05-24 15:09:43"
+    }
+}
+
+```
+
+Banners
+------------
+
+### Banner Search
+
+Get list of Banners
+
+GET https://dealcha.com/rest/banner/search?client_id=[app_token]&client_secret=[app_secret]
+
+Parameters
+
+ - `order`
+ - `filter`
+ - `start`
+ - `range`
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        {
+            "banner_id": "4",
+            "banner_active": "1",
+            "banner_created": "2017-02-28 16:26:33",
+            "banner_updated": "2017-08-12 09:52:25",
+            "banner_image": {
+                "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf2.png",
+                "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf3.png",
+                "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf1.png"
+            },
+            "banner_link": "https://dealcha.com/article/how-it-works",
+            "banner_priority": "7",
+            "banner_start": "2017-02-28 00:00:00",
+            "banner_end": "2017-08-01 00:00:00",
+            "banner_type": null,
+            "banner_flag": null
+        },
+        "total": "1"
+    }
+}
+
+```
+### Banner Detail
+
+Search per banner
+
+GET https://dealcha.com/rest/banner/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+
+```
+The response should be like the following.
+
+{
+    "error": false,
+    "results": {
+        "banner_id": "1",
+        "banner_active": "0",
+        "banner_created": "2017-02-28 16:05:06",
+        "banner_updated": "2017-06-22 23:05:46",
+        "banner_image": {
+            "large": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e2.png",
+            "small": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e3.png",
+            "original": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e1.png"
+        },
+        "banner_link": "https://dealcha.com/article/how-it-works",
+        "banner_priority": "7",
+        "banner_start": "2017-02-28 00:00:00",
+        "banner_end": "2018-01-01 00:00:00",
+        "banner_type": null,
+        "banner_flag": null
+    }
+}
 ```
 
 How it works
