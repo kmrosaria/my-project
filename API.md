@@ -18,9 +18,12 @@ How to create an App
 
 In [App Search](https://dealcha.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
 
+
 ```
+
 EXAMPLE SCOPE
 https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
+
 ```
 
 ### Exchange code with a token
@@ -34,7 +37,9 @@ POST https://dealcha.com/rest/access
  - `client_secret [app_secret]`
  - `code [code]`
 
+
 ```
+
 This should return a session token similar to the following.
 
 {
@@ -69,7 +74,9 @@ POST https://dealcha.com/rest/signup
  - `promo_code [optional]`
  - `terms`
 
+
 ```
+
 The response should be similar to the following and this will response the data for your session. The user will also recieve a confirmation email.
 
 {
@@ -135,7 +142,9 @@ POST https://dealcha.com/rest/login
  - `client_id`
  - `client_secret`
 
+
 ```
+
 The response should be similar to the following and this will response the data for your session.
 
 {
@@ -202,7 +211,9 @@ POST https://dealcha.com/rest/forgot
  - `client_id`
  - `client_secret`
 
+
 ```
+
 The response should be similar to the following and the Dealcha will send the forgot password email to the user.
 
 {
@@ -256,7 +267,9 @@ Search for profile detail per user
 
 GET https://dealcha.com/rest/profile/detail/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
+
 ```
+
 Change the `:profile_id` with the profile_id of the user and the response should be profile detail for the `user`.
 
 {
@@ -304,7 +317,9 @@ Parameters
  - `start`
  - `range`
 
+
 ```
+
 The response should be like the following.
 
 {
@@ -353,7 +368,9 @@ POST https://dealcha.com/rest/profile/update/:profile_id?client_id=[app_token]&c
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
 
+
 ```
+
 The response should be like the following.
 
 {
