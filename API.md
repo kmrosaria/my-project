@@ -18,10 +18,11 @@ How to create an App
 
 In [App Search](https://dealcha.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
 
-### Example scope
-
 ```
+## Example scope
+
 https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
+
 ```
 
 ### Exchange code with a token
