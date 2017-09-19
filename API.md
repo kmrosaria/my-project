@@ -5,7 +5,7 @@ Dealcha is Thailand’s #1 Cashback Website
 
 *Current version: [v0.9.0][dist]*
 
-[![Build Status](https://travis-ci.org/rstacruz/flatdoc.svg?branch=gh-pages)](https://dealcha.com)
+[![Build Status](https://travis-ci.com/Openovate/Dealcha.svg?token=usAby1dW3tLQe7YAy7Cr&branch=master)](https://dealcha.com)
 
 How to create an App
 ---------------
