@@ -1,4 +1,4 @@
-Dealcha API
+Dealcha Front end API
 =======
 
 Dealcha is Thailand’s #1 Cashback Website
