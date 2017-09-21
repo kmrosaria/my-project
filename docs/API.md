@@ -380,13 +380,7 @@ Parameter | Type | Usage
 `profile_phone` | string | optional
 `profile_gender` | string | optional
 `profile_birthday` | string | optional
-`profile_address`:
-    - `postal`
-    - `country`
-    - `street1`
-    - `street2`
-    - `district`
-    - `province` | string | optional
+`profile_address` | string | optional
 
 ```
 The response should be like the following.
