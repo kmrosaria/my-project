@@ -1,41 +1,38 @@
-Dealcha Front end API
+Buzzedeal API
 =======
 
-Dealcha is Thailand’s #1 Cashback Website
+Buzzedeal Front end API
 
-*Current version: [v0.9.0][dist]*
-
-[![Build Status](https://travis-ci.com/Openovate/Dealcha.svg?token=usAby1dW3tLQe7YAy7Cr&branch=master)](https://dealcha.com)
+[![Build Status](https://travis-ci.com/Openovate/buzzedeal.svg?token=usAby1dW3tLQe7YAy7Cr&branch=master)](https://buzzedeal.com)
 
 How to create an App
 ---------------
 
-1. [Log In](https://dealcha.com/login)
-2. Go to [App Search](https://dealcha.com/developer/app/search)
-3. [Create](https://dealcha.com/developer/app/create) an app
+1. [Log In](https://buzzedeal.com/login)
+2. Go to [App Search](https://buzzedeal.com/developer/app/search)
+3. [Create](https://buzzedeal.com/developer/app/create) an app
 
 ### How OAuth 2 Works
 
-In [App Search](https://dealcha.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
+In [App Search](https://buzzedeal.com/developer/app/search), click the lock. This is what you redirect to get a user's permission.
 
 ### Example scope
 
 ```
-https://www.dealcha.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
+https://www.buzzedeal.com/dialog/request?client_id=[app_token]&redirect_uri=[redirect url]&scope=user_profile
 ```
 
 ### Exchange code with a token
 
 After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
-POST https://dealcha.com/rest/access
+`POST` **:** `https://buzzedeal.com/rest/access`
 
-Parameters
-
- - `client_id [app_token]`
- - `client_secret [app_secret]`
- - `code [code]`
-
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
+`code [code]` | string | **required**
 
 ```
 This should return a session token similar to the following.
@@ -62,17 +59,17 @@ Getting Account Information.
 
 Signin up a user via API.
 
-POST https://dealcha.com/rest/signup
+`POST` **:** `https://buzzedeal.com/rest/signup`
 
-Parameters
-
- - `client_id`
- - `client_secret`
- - `profile_email`
- - `auth_password `
- - `confirm `
- - `promo_code [optional]`
- - `terms`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
+`profile_email` | email | **required**
+`auth_password` | string | **required**
+`confirm` | string | **required**
+`promotion` | string | **optional**
+`terms` | string | **required**
 
 ```
 The response should be similar to the following and this will response the data for your session. The user will also recieve a confirmation email.
@@ -97,7 +94,7 @@ The response should be similar to the following and this will response the data 
         "profile_last": null,
         "profile_username": null,
         "profile_email": "johndoe@gmail.com",
-        "profile_image": "{\"large\": \"http://dealcha.dev/images/avatar/avatar-10.png\", \"small\": \"http://dealcha.dev/images/avatar/avatar-10.png\"}",
+        "profile_image": "{\"large\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\", \"small\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\"}",
         "profile_phone": null,
         "profile_gender": null,
         "profile_birthdate": null,
@@ -133,14 +130,15 @@ The response should be similar to the following and this will response the data 
 
 Log in via API.
 
-POST https://dealcha.com/rest/login
+`POST` **:** `https://buzzedeal.com/rest/login`
 
-Parameters
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
+`auth_slug` | email | **required**
+`auth_password` | string | **required**
 
- - `auth_slug`
- - `auth_password`
- - `client_id`
- - `client_secret`
 
 ```
 The response should be similar to the following and this will response the data for your session.
@@ -167,7 +165,7 @@ The response should be similar to the following and this will response the data 
             "profile_last": null,
             "profile_username": null,
             "profile_email": "johndoe@gmail.com",
-            "profile_image": "{\"large\": \"http://dealcha.dev/images/avatar/avatar-10.png\", \"small\": \"http://dealcha.dev/images/avatar/avatar-10.png\"}",
+            "profile_image": "{\"large\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\", \"small\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\"}",
             "profile_phone": null,
             "profile_gender": null,
             "profile_birthdate": null,
@@ -203,16 +201,16 @@ The response should be similar to the following and this will response the data 
 
 Forgot Password via API.
 
-POST https://dealcha.com/rest/forgot
+`POST` **:** `https://buzzedeal.com/rest/forgot`
 
-Parameters
-
- - `auth_slug`
- - `client_id`
- - `client_secret`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
+`auth_slug` | email | **required**
 
 ```
-The response should be similar to the following and the Dealcha will send the forgot password email to the user.
+The response should be similar to the following and the buzzedeal will send the forgot password email to the user.
 
 {
     "error": false,
@@ -234,7 +232,7 @@ The response should be similar to the following and the Dealcha will send the fo
         "profile_last": null,
         "profile_username": null,
         "profile_email": "johndoe@gmail.com",
-        "profile_image": "{\"large\": \"http://dealcha.dev/images/avatar/avatar-10.png\", \"small\": \"http://dealcha.dev/images/avatar/avatar-10.png\"}",
+        "profile_image": "{\"large\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\", \"small\": \"http://buzzedeal.dev/images/avatar/avatar-10.png\"}",
         "profile_phone": null,
         "profile_gender": null,
         "profile_birthdate": null,
@@ -263,7 +261,12 @@ Getting Infomation about the user.
 
 Search for profile detail per user
 
-GET https://dealcha.com/rest/profile/detail/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+`GET` **:** `https://buzzedeal.com/rest/profile/detail/:profile_id?client_id=[app_token]&client_secret=[app_secret]`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
 
 ```
 Change the `:profile_id` with the profile_id of the user and the response should be profile detail for the `user`.
@@ -280,8 +283,8 @@ Change the `:profile_id` with the profile_id of the user and the response should
         "profile_username": null,
         "profile_email": "johndoe@gmail.com",
         "profile_image": {
-            "large": "http://dealcha.dev/images/avatar/avatar-10.png",
-            "small": "http://dealcha.dev/images/avatar/avatar-10.png"
+            "large": "http://buzzedeal.dev/images/avatar/avatar-10.png",
+            "small": "http://buzzedeal.dev/images/avatar/avatar-10.png"
         },
         "profile_phone": null,
         "profile_gender": null,
@@ -305,14 +308,16 @@ Change the `:profile_id` with the profile_id of the user and the response should
 
 Search for profiles
 
-GET https://dealcha.com/rest/profile/search?client_id=[app_token]&client_secret=[app_secret]
+`GET` **:** `https://buzzedeal.com/rest/profile/search/:profile_id?client_id=[app_token]&client_secret=[app_secret]`
 
-Parameters
-
- - `order`
- - `filter`
- - `start`
- - `range`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | **required**
+`client_secret [app_secret]` | string | **required**
+`order` | string | **optional**
+`filter` | string | **optional**
+`start` | string | **optional**
+`range` | string | **optional**
 
 ```
 The response should be like the following.
@@ -331,8 +336,8 @@ The response should be like the following.
                 "profile_username": null,
                 "profile_email": "johndoe@gmail.com",
                 "profile_image": {
-                    "large": "http://dealcha.dev/images/avatar/avatar-10.png",
-                    "small": "http://dealcha.dev/images/avatar/avatar-10.png"
+                    "large": "http://buzzedeal.dev/images/avatar/avatar-10.png",
+                    "small": "http://buzzedeal.dev/images/avatar/avatar-10.png"
                 },
                 "profile_phone": null,
                 "profile_gender": null,
@@ -359,7 +364,7 @@ The response should be like the following.
 
 Update profile information per user
 
-POST https://dealcha.com/rest/profile/update/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+POST https://buzzedeal.com/rest/profile/update/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
 
@@ -375,7 +380,7 @@ Parameters
  - `profile_phone`
  - `profile_gender`
  - `profile_birthday`
- - `profile_address`
+ - `profile_address`:
     - `postal`
     - `country`
     - `street1`
@@ -394,7 +399,7 @@ The response should be like the following.
         "profile_last": "John",
         "profile_first": "Doe",
         "profile_id": "57093",
-        "profile_image": "{\"large\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\"}",
+        "profile_image": "{\"large\":\"http:\\/\\/buzzedeal.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/buzzedeal.dev\\/images\\/avatar\\/avatar-2.png\"}",
         "profile_updated": "2017-09-18 13:52:06",
         "original": {
             "client_id": "300aaf826a59b87b2d5a4ebb6e3d336c",
@@ -402,7 +407,7 @@ The response should be like the following.
             "profile_last": "John",
             "profile_first": "Doe",
             "profile_id": "57093",
-            "profile_image": "{\"large\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/dealcha.dev\\/images\\/avatar\\/avatar-2.png\"}",
+            "profile_image": "{\"large\":\"http:\\/\\/buzzedeal.dev\\/images\\/avatar\\/avatar-2.png\",\"small\":\"http:\\/\\/buzzedeal.dev\\/images\\/avatar\\/avatar-2.png\"}",
             "profile_updated": "2017-09-18 13:52:06"
         }
     }
@@ -417,7 +422,7 @@ Settings
 
 Get cashback summaries and list of cashback according to status
 
-GET https://dealcha.com/rest/settings/cashback-summary**/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+GET https://buzzedeal.com/rest/settings/cashback-summary**/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -486,7 +491,7 @@ The response should be like the following.
 
 Get User's referral data and list of referrals
 
-GET https://dealcha.com/rest/settings/refer/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+GET https://buzzedeal.com/rest/settings/refer/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -517,7 +522,7 @@ The response should be like the following.
 
 Report a missing cashback (`Discrepancy`)
 
-POST https://dealcha.com/rest/settings/missing-cashback/:profile_id
+POST https://buzzedeal.com/rest/settings/missing-cashback/:profile_id
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -564,7 +569,7 @@ Stores
 
 Search for Stores or list of stores
 
-GET https://dealcha.com/rest/store/search?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/store/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
 
@@ -591,15 +596,15 @@ The response should be like the following.
                 "store_id": "1",
                 "store_name": "Lazada",
                 "store_logo": {
-                    "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-                    "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-                    "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+                    "large": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "small": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "original": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
                 },
                 "store_slug": "Lazada-s1",
-                "store_link": "http://dealcha.dev/Lazada-s1/store",
+                "store_link": "http://buzzedeal.dev/Lazada-s1/store",
                 "store_root_url": "www.lazada.com.ph",
-                "store_redirect": "http://dealcha.dev/redirect/store/1",
-                "store_redirect_api": "http://dealcha.dev/rest/redirect/store/1?access_token=",
+                "store_redirect": "http://buzzedeal.dev/redirect/store/1",
+                "store_redirect_api": "http://buzzedeal.dev/rest/redirect/store/1?access_token=",
                 "store_description": "Lazada Description",
                 "store_default_cashback": "0.00",
                 "store_max_purchase": "100000.00",
@@ -616,7 +621,7 @@ The response should be like the following.
 
 Get Store Detail
 
-GET https://dealcha.com/rest/store/detail/:store_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/store/detail/:store_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -632,14 +637,14 @@ The response should be like the following.
         "store_id": "1",
         "store_name": "Lazada",
         "store_logo": {
-            "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-            "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-            "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+            "large": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "small": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "original": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
         },
         "store_slug": "Lazada-s1",
-        "store_link": "http://dealcha.dev/Lazada-s1/store",
+        "store_link": "http://buzzedeal.dev/Lazada-s1/store",
         "store_root_url": "www.lazada.com.ph",
-        "store_redirect": "http://dealcha.dev/redirect/store/1",
+        "store_redirect": "http://buzzedeal.dev/redirect/store/1",
         "store_description": "Lazada Description",
         "store_default_cashback": "0.00",
         "store_max_purchase": "100000.00",
@@ -653,7 +658,7 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-GET https://dealcha.com/rest/redirect/store/:store_id/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/redirect/store/:store_id/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -676,7 +681,7 @@ Deals
 
 Search for Stores or list of stores
 
-GET https://dealcha.com/rest/deal/search?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/deal/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
 
@@ -696,13 +701,13 @@ The response should be like the following.
                 "promotion_id": "1",
                 "promotion_title": "Lazada Deal Number 1",
                 "promotion_slug": "Lazada-Deal-Number-1-P1",
-                "promotion_link": "https://dealcha.com/Lazada-Deal-Number-1-P1/deal",
-                "promotion_redirect": "https://dealcha.com//redirect/promotion/1",
+                "promotion_link": "https://buzzedeal.com/Lazada-Deal-Number-1-P1/deal",
+                "promotion_redirect": "https://buzzedeal.com//redirect/promotion/1",
                 "promotion_images": [
                     {
-                        "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b13.png",
-                        "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b12.png",
-                        "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b11.png"
+                        "large": "https://buzzedeal.com/upload/img.png",
+                        "small": "https://buzzedeal.com/upload/img.png",
+                        "original": "https://buzzedeal.com/upload/img.png"
                     }
                 ],
                 "promotion_detail": "<p>Deal Sample Descrition<br></p>",
@@ -720,13 +725,13 @@ The response should be like the following.
                 "store_id": "1",
                 "store_name": "Lazada",
                 "store_logo": {
-                    "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-                    "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-                    "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+                    "large": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "small": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+                    "original": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
                 },
                 "store_slug": "Lazada-s1",
-                "store_link": "http://dealcha.dev/Lazada-s1/store",
-                "store_redirect": "http://dealcha.dev/redirect/store/1",
+                "store_link": "http://buzzedeal.dev/Lazada-s1/store",
+                "store_redirect": "http://buzzedeal.dev/redirect/store/1",
                 "store_description": "Lazada Description",
                 "store_default_cashback": "0.00",
                 "store_max_purchase": "100000.00",
@@ -743,7 +748,7 @@ The response should be like the following.
 
 Get Deal Detail
 
-GET https://dealcha.com/rest/Deal/detail/:promotion_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/Deal/detail/:promotion_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -754,13 +759,13 @@ The response should be like the following.
         "promotion_id": "1",
         "promotion_title": "Lazada Deal Number 1",
         "promotion_slug": "Lazada-Deal-Number-1-P1",
-        "promotion_link": "https://dealcha.com/Lazada-Deal-Number-1-P1/deal",
-        "promotion_redirect": "https://dealcha.com//redirect/promotion/1",
+        "promotion_link": "https://buzzedeal.com/Lazada-Deal-Number-1-P1/deal",
+        "promotion_redirect": "https://buzzedeal.com//redirect/promotion/1",
         "promotion_images": [
             {
-                "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b13.png",
-                "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b12.png",
-                "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/6f4859c0c981c6809e60900552aee4b11.png"
+                "large": "https://buzzedeal.com/upload/img.png",
+                "small": "https://buzzedeal.com/upload/img.png",
+                "original": "https://buzzedeal.com/upload/img.png"
             }
         ],
         "promotion_detail": "<p>Deal Sample Descrition<br></p>",
@@ -778,13 +783,13 @@ The response should be like the following.
         "store_id": "1",
         "store_name": "Lazada",
         "store_logo": {
-            "large": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-            "small": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
-            "original": "http://s3-ap-southeast-1.amazonaws.com/dealcha-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
+            "large": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "small": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858",
+            "original": "http://buzzedeal.com/buzzedeal-upload/stores/thumbnail_images/000/000/001/original/Lazada_logo.png?1462513858"
         },
         "store_slug": "Lazada-s1",
-        "store_link": "http://dealcha.dev/Lazada-s1/store",
-        "store_redirect": "http://dealcha.dev/redirect/store/1",
+        "store_link": "http://buzzedeal.dev/Lazada-s1/store",
+        "store_redirect": "http://buzzedeal.dev/redirect/store/1",
         "store_description": "Lazada Description",
         "store_default_cashback": "0.00",
         "store_max_purchase": "100000.00",
@@ -799,7 +804,7 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-GET https://dealcha.com/rest/redirect/promotion/:promotion/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/redirect/promotion/:promotion/:profile_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -821,7 +826,7 @@ Category
 
 Get list of categories
 
-GET https://dealcha.com/rest/category/search?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/category/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
 
@@ -857,7 +862,7 @@ The response should be like the following.
 
 Search per category
 
-GET https://dealcha.com/rest/category/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/category/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -885,7 +890,7 @@ Banners
 
 Get list of Banners
 
-GET https://dealcha.com/rest/banner/search?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/banner/search?client_id=[app_token]&client_secret=[app_secret]
 
 Parameters
 
@@ -906,11 +911,11 @@ The response should be like the following.
             "banner_created": "2017-02-28 16:26:33",
             "banner_updated": "2017-08-12 09:52:25",
             "banner_image": {
-                "large": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf2.png",
-                "small": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf3.png",
-                "original": "https://dealcha-v2.s3-ap-southeast-1.amazonaws.com/upload/f8153b4810a0f87122776b210db0ebbf1.png"
+                "large": "https://buzzedeal.com/upload/img.png",
+                "small": "https://buzzedeal.com/upload/img.png",
+                "original": "https://buzzedeal.com/upload/img.png"
             },
-            "banner_link": "https://dealcha.com/article/how-it-works",
+            "banner_link": "https://buzzedeal.com",
             "banner_priority": "7",
             "banner_start": "2017-02-28 00:00:00",
             "banner_end": "2017-08-01 00:00:00",
@@ -926,7 +931,7 @@ The response should be like the following.
 
 Search per banner
 
-GET https://dealcha.com/rest/banner/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/banner/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
 
 ```
 The response should be like the following.
@@ -939,11 +944,11 @@ The response should be like the following.
         "banner_created": "2017-02-28 16:05:06",
         "banner_updated": "2017-06-22 23:05:46",
         "banner_image": {
-            "large": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e2.png",
-            "small": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e3.png",
-            "original": "https://dealcha-dev.s3-ap-southeast-1.amazonaws.com/upload/eb7be4d26db2a434ab6a50d588a1710e1.png"
+            "large": "https://buzzedeal.com/upload/img.png",
+            "small": "https://buzzedeal.com/upload/img.png",
+            "original": "https://buzzedeal.com/upload/img.png"
         },
-        "banner_link": "https://dealcha.com/article/how-it-works",
+        "banner_link": "https://buzzedeal.com",
         "banner_priority": "7",
         "banner_start": "2017-02-28 00:00:00",
         "banner_end": "2018-01-01 00:00:00",
