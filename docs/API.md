@@ -26,7 +26,9 @@ https://www.buzzedeal.com/dialog/request?client_id=[app_token]&redirect_uri=[red
 
 After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
-`POST : https://buzzedeal.com/rest/access`
+```
+POST : https://buzzedeal.com/rest/access
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -59,7 +61,9 @@ Getting Account Information.
 
 Signin up a user via API.
 
-`POST : https://buzzedeal.com/rest/signup`
+```
+POST : https://buzzedeal.com/rest/signup
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -130,7 +134,9 @@ The response should be similar to the following and this will response the data 
 
 Log in via API.
 
-`POST : https://buzzedeal.com/rest/login`
+```
+POST : https://buzzedeal.com/rest/login
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -201,7 +207,9 @@ The response should be similar to the following and this will response the data 
 
 Forgot Password via API.
 
-`POST : https://buzzedeal.com/rest/forgot`
+```
+POST : https://buzzedeal.com/rest/forgot
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -261,7 +269,9 @@ Getting Infomation about the user.
 
 Search for profile detail per user
 
-`GET : https://buzzedeal.com/rest/profile/detail/:profile_id`
+```
+GET : https://buzzedeal.com/rest/profile/detail/:profile_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -308,7 +318,9 @@ Change the `:profile_id` with the profile_id of the user and the response should
 
 Search for profiles
 
-`GET : https://buzzedeal.com/rest/profile/search/:profile_id`
+```
+GET : https://buzzedeal.com/rest/profile/search/:profile_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -364,7 +376,9 @@ The response should be like the following.
 
 Update profile information per user
 
-`POST https://buzzedeal.com/rest/profile/update/:profile_id`
+```
+POST https://buzzedeal.com/rest/profile/update/:profile_id
+```
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
 
@@ -416,7 +430,9 @@ Settings
 
 Get cashback summaries and list of cashback according to status
 
-`GET https://buzzedeal.com/rest/settings/cashback-summary/:profile_id`
+```
+GET https://buzzedeal.com/rest/settings/cashback-summary/:profile_id
+```
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -485,7 +501,9 @@ The response should be like the following.
 
 Get User's referral data and list of referrals
 
-`GET https://buzzedeal.com/rest/settings/refer/:profile_id`
+```
+GET https://buzzedeal.com/rest/settings/refer/:profile_id
+```
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -516,7 +534,9 @@ The response should be like the following.
 
 Report a missing cashback (`Discrepancy`)
 
-`POST https://buzzedeal.com/rest/settings/missing-cashback/:profile_id`
+```
+POST https://buzzedeal.com/rest/settings/missing-cashback/:profile_id
+```
 
 Change the `:profile_id` with the profile_id of the user. 
 
@@ -563,7 +583,9 @@ Stores
 
 Search for Stores or list of stores
 
-`GET https://buzzedeal.com/rest/store/search`
+```
+GET https://buzzedeal.com/rest/store/search
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -617,7 +639,9 @@ The response should be like the following.
 
 Get Store Detail
 
-`GET https://buzzedeal.com/rest/store/detail/:store_id`
+```
+GET https://buzzedeal.com/rest/store/detail/:store_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -659,7 +683,9 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-`GET https://buzzedeal.com/rest/redirect/store/:store_id/:profile_id`
+```
+GET https://buzzedeal.com/rest/redirect/store/:store_id/:profile_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -687,7 +713,9 @@ Deals
 
 Search for Stores or list of stores
 
-`GET https://buzzedeal.com/rest/deal/search`
+```
+GET https://buzzedeal.com/rest/deal/search
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -756,7 +784,9 @@ The response should be like the following.
 
 Get Deal Detail
 
-`GET https://buzzedeal.com/rest/Deal/detail/:promotion_id`
+```
+GET https://buzzedeal.com/rest/Deal/detail/:promotion_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -818,7 +848,9 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-`GET https://buzzedeal.com/rest/redirect/promotion/:promotion/:profile_id`
+```
+GET https://buzzedeal.com/rest/redirect/promotion/:promotion/:profile_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -845,7 +877,9 @@ Category
 
 Get list of categories
 
-`GET https://buzzedeal.com/rest/category/search`
+```
+GET https://buzzedeal.com/rest/category/search
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -912,7 +946,9 @@ Banners
 
 Get list of Banners
 
-`GET https://buzzedeal.com/rest/banner/search`
+```
+GET https://buzzedeal.com/rest/banner/search
+```
 
 Parameter | Type | Usage
 ------------ | -------------
@@ -955,7 +991,9 @@ The response should be like the following.
 
 Search per banner
 
-`GET https://buzzedeal.com/rest/banner/detail/:category_id`
+```
+GET https://buzzedeal.com/rest/banner/detail/:category_id
+```
 
 Parameter | Type | Usage
 ------------ | -------------
