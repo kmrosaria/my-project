@@ -26,13 +26,13 @@ https://www.buzzedeal.com/dialog/request?client_id=[app_token]&redirect_uri=[red
 
 After the user approves of your app, they will be redirected back to the specified `[redirect url]` with a new URL parameter called `?code`. The last thing you need to do is exchange that code for a token. Using cURL, call the following.
 
-`POST` **:** `https://buzzedeal.com/rest/access`
+`POST : https://buzzedeal.com/rest/access`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
-`code [code]` | string | **required**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`code [code]` | string | required
 
 ```
 This should return a session token similar to the following.
@@ -59,17 +59,17 @@ Getting Account Information.
 
 Signin up a user via API.
 
-`POST` **:** `https://buzzedeal.com/rest/signup`
+`POST : https://buzzedeal.com/rest/signup`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
-`profile_email` | email | **required**
-`auth_password` | string | **required**
-`confirm` | string | **required**
-`promotion` | string | **optional**
-`terms` | string | **required**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`profile_email` | email | required
+`auth_password` | string | required
+`confirm` | string | required
+`promotion` | string | optional
+`terms` | string | required
 
 ```
 The response should be similar to the following and this will response the data for your session. The user will also recieve a confirmation email.
@@ -130,14 +130,14 @@ The response should be similar to the following and this will response the data 
 
 Log in via API.
 
-`POST` **:** `https://buzzedeal.com/rest/login`
+`POST : https://buzzedeal.com/rest/login`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
-`auth_slug` | email | **required**
-`auth_password` | string | **required**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`auth_slug` | email | required
+`auth_password` | string | required
 
 
 ```
@@ -201,13 +201,13 @@ The response should be similar to the following and this will response the data 
 
 Forgot Password via API.
 
-`POST` **:** `https://buzzedeal.com/rest/forgot`
+`POST : https://buzzedeal.com/rest/forgot`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
-`auth_slug` | email | **required**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`auth_slug` | email | required
 
 ```
 The response should be similar to the following and the buzzedeal will send the forgot password email to the user.
@@ -261,12 +261,12 @@ Getting Infomation about the user.
 
 Search for profile detail per user
 
-`GET` **:** `https://buzzedeal.com/rest/profile/detail/:profile_id?client_id=[app_token]&client_secret=[app_secret]`
+`GET : https://buzzedeal.com/rest/profile/detail/:profile_id`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 Change the `:profile_id` with the profile_id of the user and the response should be profile detail for the `user`.
@@ -308,16 +308,16 @@ Change the `:profile_id` with the profile_id of the user and the response should
 
 Search for profiles
 
-`GET` **:** `https://buzzedeal.com/rest/profile/search/:profile_id?client_id=[app_token]&client_secret=[app_secret]`
+`GET : https://buzzedeal.com/rest/profile/search/:profile_id`
 
 Parameter | Type | Usage
 ------------ | -------------
-`client_id [app_token]` | string | **required**
-`client_secret [app_secret]` | string | **required**
-`order` | string | **optional**
-`filter` | string | **optional**
-`start` | string | **optional**
-`range` | string | **optional**
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`order` | string | optional
+`filter` | string | optional
+`start` | string | optional
+`range` | string | optional
 
 ```
 The response should be like the following.
@@ -364,29 +364,29 @@ The response should be like the following.
 
 Update profile information per user
 
-POST https://buzzedeal.com/rest/profile/update/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+`POST https://buzzedeal.com/rest/profile/update/:profile_id`
 
 Change the `:profile_id` with the profile_id of the user and add the parameter you want to update. 
 
-Parameters
-
- - `client_id`
- - `client_secret`
- - `profile_first`
- - `profile_last`
- - `profile_username`
- - `profile_email`
- - `profile_image`
- - `profile_phone`
- - `profile_gender`
- - `profile_birthday`
- - `profile_address`:
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`profile_first` | string | optional
+`profile_last` | string | optional
+`profile_username` | string | optional
+`profile_email` | string | optional
+`profile_image` | string | optional
+`profile_phone` | string | optional
+`profile_gender` | string | optional
+`profile_birthday` | string | optional
+`profile_address`:
     - `postal`
     - `country`
     - `street1`
     - `street2`
     - `district`
-    - `province`
+    - `province` | string | optional
 
 ```
 The response should be like the following.
@@ -422,19 +422,19 @@ Settings
 
 Get cashback summaries and list of cashback according to status
 
-GET https://buzzedeal.com/rest/settings/cashback-summary**/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+`GET https://buzzedeal.com/rest/settings/cashback-summary/:profile_id`
 
 Change the `:profile_id` with the profile_id of the user. 
 
-Parameters
-
- - `client_id`
- - `client_secret`
- - `order`
- - `filter`
- - `start`
- - `range`
- - `status` (Default Value: `pending`) 
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`order` | string | optional
+`filter` | string | optional
+`start` | string | optional
+`range` | string | optional
+`status` | string | optional (Default : `pending`)
 
 ```
 The response should be like the following.
@@ -491,14 +491,14 @@ The response should be like the following.
 
 Get User's referral data and list of referrals
 
-GET https://buzzedeal.com/rest/settings/refer/:profile_id?client_id=[app_token]&client_secret=[app_secret]&status=[status]
+`GET https://buzzedeal.com/rest/settings/refer/:profile_id`
 
 Change the `:profile_id` with the profile_id of the user. 
 
-Parameters
-
- - `client_id`
- - `client_secret`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -522,19 +522,19 @@ The response should be like the following.
 
 Report a missing cashback (`Discrepancy`)
 
-POST https://buzzedeal.com/rest/settings/missing-cashback/:profile_id
+`POST https://buzzedeal.com/rest/settings/missing-cashback/:profile_id`
 
 Change the `:profile_id` with the profile_id of the user. 
 
-Parameters
-
- - `client_id`
- - `client_secret`
- - `discrepancy_reference` (Shopping Trip)
- - `discrepancy_note` (Total Purchase Price)
- - `discrepancy_price` (Expected Cashback Amount)
- - `discrepancy_order_email` (Order Confirmation Email)
- - `discrepancy_images` (Order Confirmation Screenshot) (Optional)
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`discrepancy_reference` (Shopping Trip)| string | required
+`discrepancy_note` (Total Purchase Price) | string | required
+`discrepancy_price` (Expected Cashback Amount)| string | required
+`discrepancy_order_email` (Order Confirmation Email)| string | optional
+`discrepancy_images` (Order Confirmation Screenshot)| string | optional
 
 ```
 The response should be like the following.
@@ -569,14 +569,16 @@ Stores
 
 Search for Stores or list of stores
 
-GET https://buzzedeal.com/rest/store/search?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/store/search`
 
-Parameters
-
- - `order` (latest/popular/cashback/store)
- - `filter`
- - `start`
- - `range`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`order` (latest/popular/cashback/store) | string | optional
+`filter` | string | optional
+`start` | string | optional
+`range` | string | optional
 
 ```
 The response should be like the following.
@@ -621,7 +623,12 @@ The response should be like the following.
 
 Get Store Detail
 
-GET https://buzzedeal.com/rest/store/detail/:store_id?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/store/detail/:store_id`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -658,7 +665,12 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-GET https://buzzedeal.com/rest/redirect/store/:store_id/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/redirect/store/:store_id/:profile_id`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -681,14 +693,16 @@ Deals
 
 Search for Stores or list of stores
 
-GET https://buzzedeal.com/rest/deal/search?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/deal/search`
 
-Parameters
-
- - `order` (latest/popular/cashback/store)
- - `filter`
- - `start`
- - `range`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`order` (latest/popular/cashback/store) | string | optional
+`filter` | string | optional
+`start` | string | optional
+`range` | string | optional
 
 ```
 The response should be like the following.
@@ -748,7 +762,13 @@ The response should be like the following.
 
 Get Deal Detail
 
-GET https://buzzedeal.com/rest/Deal/detail/:promotion_id?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/Deal/detail/:promotion_id`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+
 
 ```
 The response should be like the following.
@@ -804,7 +824,12 @@ The response should be like the following.
 
 Get redirect link and shopping trips for store
 
-GET https://buzzedeal.com/rest/redirect/promotion/:promotion/:profile_id?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/redirect/promotion/:promotion/:profile_id`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -826,14 +851,12 @@ Category
 
 Get list of categories
 
-GET https://buzzedeal.com/rest/category/search?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/category/search`
 
-Parameters
-
- - `order`
- - `filter`
- - `start`
- - `range`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -862,7 +885,12 @@ The response should be like the following.
 
 Search per category
 
-GET https://buzzedeal.com/rest/category/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+GET https://buzzedeal.com/rest/category/detail/:category_id
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
@@ -890,14 +918,16 @@ Banners
 
 Get list of Banners
 
-GET https://buzzedeal.com/rest/banner/search?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/banner/search`
 
-Parameters
-
- - `order`
- - `filter`
- - `start`
- - `range`
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
+`order` | string | optional
+`filter` | string | optional
+`start` | string | optional
+`range` | string | optional
 
 ```
 The response should be like the following.
@@ -931,7 +961,12 @@ The response should be like the following.
 
 Search per banner
 
-GET https://buzzedeal.com/rest/banner/detail/:category_id?client_id=[app_token]&client_secret=[app_secret]
+`GET https://buzzedeal.com/rest/banner/detail/:category_id`
+
+Parameter | Type | Usage
+------------ | -------------
+`client_id [app_token]` | string | required
+`client_secret [app_secret]` | string | required
 
 ```
 The response should be like the following.
